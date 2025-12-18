@@ -1,0 +1,39 @@
+def sort_rows(matrix):
+    
+    for row in matrix:
+        row.sort()
+
+
+def find_min_sum_rows(matrix):
+   
+    min_sum = sum(matrix[0]) + sum(matrix[1])
+    index = 0
+
+    for i in range(1, len(matrix) - 1):
+        current_sum = sum(matrix[i]) + sum(matrix[i + 1])
+        if current_sum < min_sum:
+            min_sum = current_sum
+            index = i
+
+    return index + 1, index + 2  # нумерація з 1
+
+
+def main():
+    matrix = []
+
+    print("Введіть елементи масиву 15×2:")
+    for i in range(15):
+        row = list(map(int, input(f"Рядок {i + 1}: ").split()))
+        matrix.append(row)
+
+    sort_rows(matrix)
+    row1, row2 = find_min_sum_rows(matrix)
+
+    print("\nВідсортований масив:")
+    for row in matrix:
+        print(row)
+
+    print(f"\nМінімальна сума у рядках №{row1} та №{row2}")
+
+
+main()
